@@ -18,7 +18,8 @@ This backend API is the server-side application for managing Muscle Memory and a
 
 ### Create/Add/Update/Delete your own workout
 - **Endpoint:**
-  - POST /:id - Create a workout
+  - POST / - Create a workout
+  - GET /new - new workout
   - PUT /:id - Update a workout
   - DELETE /:id - Delete a workout
 - **Description:** Manage your own workouts.
@@ -26,6 +27,7 @@ This backend API is the server-side application for managing Muscle Memory and a
   - Create: WorkoutCtrl.create
   - Update: WorkoutCtrl.update
   - Delete: WorkoutCtrl.delete
+  - Show: WorkoutCtrl.show
 
 ***
 
