@@ -14,6 +14,8 @@ const Workout = require('../models/Workout')
 
 router.get('/', WorkoutCtrl.getWorkouts)
 
+router.get('/:id', WorkoutCtrl.showWorkout)
+
 router.post('/', WorkoutCtrl.createWorkout)
 
 router.put('/:id', WorkoutCtrl.updateWorkout)
