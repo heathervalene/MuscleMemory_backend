@@ -17,6 +17,27 @@ const express = require("express");
 // create application object
 const app = express();
 
+const cors = require("cors")
+const morgan = require("morgan")
+
+const MuscleGroupRouter = require('./routes/musclegroups.js')
+const WorkoutRouter = require('./routes/workouts.js')
+const MovementRouter = require('./routes/movements.js')
+
+///////////////////////////////
+// MIDDLEWARE
+////////////////////////////////
+app.use(express.urlencoded({extended:true}))
+app.use(express.json()); 
+
+app.use(cors()); 
+app.use(morgan("dev"));
+
+app.use('/musclegroups', MuscleGroupRouter)
+app.use('/movements', MovementRouter)
+app.use('/workouts', WorkoutRouter)
+
+
 ///////////////////////////////
 // ROUTES
 ////////////////////////////////
