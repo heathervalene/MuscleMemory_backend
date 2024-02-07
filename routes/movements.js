@@ -11,9 +11,7 @@ const MovementCtrl = require('../controllers/movements')
 // ROUTES
 ////////////////////////////////
 
-router.get(':muscleId/', (req, res) => {
-    res.status(200).json({message: "movement index route"})
-})
+router.get('/:muscleId/', MovementCtrl.MovementIndex)
 
 //filter route//
 

@@ -19,7 +19,8 @@ async function createWorkout(req, res, next) {
 
 async function showWorkout(req, res, next) {
     try {
-        res.json(await Workouts.findById(req.params.id))
+        const showWorkout = await Workouts.findById(req.params.id)
+        res.json(showWorkout)
     } catch (err) {
         res.status(400).json(err);
     }
@@ -27,21 +28,21 @@ async function showWorkout(req, res, next) {
 
 async function updateWorkout(req, res, next) {
     try {
-        res.json(findByIdAndUpdate(req.params.id, req.body, { new: true })
-        );
+      const updatedWorkout = await Workouts.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      res.json(updatedWorkout);
     } catch (err) {
-        res.status(400).json(err);
+      res.status(400).json(err);
     }
-}
+  }
 
-async function destroyWorkout(req, res, next) {
+  async function destroyWorkout(req, res, next) {
     try {
-        res.json(await Workouts.findByIdAndDelete(req.params.id))
+      const deletedWorkout = await Workouts.findByIdAndDelete(req.params.id);
+      res.json(deletedWorkout);
     } catch (err) {
-        res.status(400).json(err);
+      res.status(400).json(err);
     }
-}
-
+  }
 module.exports = {
     getWorkouts,
     createWorkout,

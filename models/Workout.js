@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({ 
-    movementId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Movement',
+   name : {
+    type: String,
         required: true,
-    },
+   },
     muscleGroupId: {
         type: Schema.Types.ObjectId,
         ref: 'MuscleGroup',
