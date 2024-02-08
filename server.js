@@ -1,27 +1,29 @@
 ///////////////////////////////
 // DEPENDENCIES
 ////////////////////////////////
+const cors = require("cors")
+const morgan = require("morgan")
+const express = require("express");
 
-// initialize .env variables
+
+
 require("dotenv").config();
 
 
-
-// start the mongoose db connection
 require('./config/db.connection.js')
 
-// pull PORT from .env, give default value of 4000 and establish DB Connection
+
 const { PORT } = process.env;
 
-// import express
-const express = require("express");
 
-// create application object
+
+
+
 const app = express();
 
-const cors = require("cors")
-const morgan = require("morgan")
 
+
+const AuthRouter = require('./routes/auth.js')
 const MuscleGroupRouter = require('./routes/musclegroups.js')
 const WorkoutRouter = require('./routes/workouts.js')
 const MovementRouter = require('./routes/movements.js')
@@ -34,10 +36,14 @@ app.use(express.json());
 
 app.use(cors()); 
 app.use(morgan("dev"));
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
+app.use('/auth', AuthRouter)
 app.use('/musclegroups', MuscleGroupRouter)
 app.use('/movements', MovementRouter)
 app.use('/workouts', WorkoutRouter)
+
 
 
 ///////////////////////////////

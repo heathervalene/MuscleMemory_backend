@@ -11,7 +11,7 @@ const MovementSchema = new Schema({
     workoutType: {
         type: String,
         required: true,
-        enum: ['bodyweight', 'dumbbell', 'machine'],
+        enum: ['Bodyweight', 'Dumbbell', 'Machine'],
     },
     muscleGroupId: {
         type: Schema.Types.ObjectId,

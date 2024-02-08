@@ -5,7 +5,7 @@ const MuscleGroupSchema = new Schema({
     name: {
         type: String,
         required: true,
-        enum: ['Chest', 'Back', 'Shoulders', 'Lats', 'Triceps', 'Biceps', 'Glutes', 'Hamstrings', 'Traps', 'calves', 'quads', 'Abs'],
+        enum: ['Chest', 'Back', 'Shoulders', 'Lats', 'Triceps', 'Biceps', 'Glutes', 'Hamstrings', 'Traps', 'Calves', 'Quads', 'Abs' ,'Other'],
     },
     image: String,
 }, {
