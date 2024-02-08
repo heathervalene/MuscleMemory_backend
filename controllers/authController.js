@@ -32,6 +32,8 @@ const Register = async (req, res) => {
 
       const user = await User.findOne({ email })
 
+      console.log(user.passwordDigest, password)
+
       let matched = await middleware.comparePassword(
         user.passwordDigest,
         password
@@ -39,7 +41,7 @@ const Register = async (req, res) => {
 
       if (matched) {
         let payload = {
-          id: user.id,
+          id: user._id,
           email: user.email
         }
       
