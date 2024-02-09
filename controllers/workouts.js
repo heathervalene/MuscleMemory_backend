@@ -1,4 +1,6 @@
 const Workouts = require('../models/Workout')
+const Movement = require('../models/Movement');
+const { move } = require('../routes/workouts');
 
 
 async function getWorkouts(req, res, next) {
@@ -20,7 +22,8 @@ async function createWorkout(req, res, next) {
 async function showWorkout(req, res, next) {
     try {
         const showWorkout = await Workouts.findById(req.params.id)
-        res.json(showWorkout)
+        const movement = await Movement.findById(showWorkout.movementId )
+        res.status(200).json({showWorkout,movement})
     } catch (err) {
         res.status(400).json(err);
     }
