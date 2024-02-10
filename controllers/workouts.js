@@ -23,18 +23,11 @@ async function getWorkouts(req, res, next) {
 
 async function createWorkout(req, res, next) {
   try {
-      const workout = await Workouts.create(req.body);
-      const movement = await Movement.findById(workout.movementId);
-      const workoutWithMovement = {
-          ...workout.toObject(),
-          movement,
-      };
-
-      res.status(201).json(workoutWithMovement);
+      const workout = await Workouts.create(req.body)
+      res.status(201).json(workout)
   } catch (err) {
       res.status(400).json(err);
-  }
-}
+  }}
 
 async function showWorkout(req, res, next) {
     try {
