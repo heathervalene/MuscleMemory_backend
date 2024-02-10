@@ -5,18 +5,13 @@ const { move } = require('../routes/workouts');
 
 async function getWorkouts(req, res, next) {
   try {
-    // Fetch all workouts
-    const workouts = await Workouts.find();
 
-    // Map through each workout to fetch and attach the corresponding movement data
+    const workouts = await Workouts.find();
     const workoutsWithMovement = await Promise.all(workouts.map(async (workout) => {
-      // Assuming each workout document contains a movementId that references a Movement
-      const movement = await Movement.findById(workout.movementId);
-      // Attach the movement data to the workout object
-      // Note: Depending on your use case, you might want to adjust how the movement data is attached
+  const movement = await Movement.findById(workout.movementId);
       return {
-        ...workout.toObject(), // Convert Mongoose document to plain object
-        movement, // Add movement data
+        ...workout.toObject(), 
+        movement,
       };
     }));
 
@@ -27,12 +22,19 @@ async function getWorkouts(req, res, next) {
 }
 
 async function createWorkout(req, res, next) {
-    try {
-        const workout = await Workouts.create(req.body)
-        res.status(201).json(workout)
-    } catch (err) {
-        res.status(400).json(err);
-    }}
+  try {
+      const workout = await Workouts.create(req.body);
+      const movement = await Movement.findById(workout.movementId);
+      const workoutWithMovement = {
+          ...workout.toObject(),
+          movement,
+      };
+
+      res.status(201).json(workoutWithMovement);
+  } catch (err) {
+      res.status(400).json(err);
+  }
+}
 
 async function showWorkout(req, res, next) {
     try {

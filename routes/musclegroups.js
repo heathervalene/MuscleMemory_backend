@@ -13,7 +13,6 @@ const MuscleGroupCtrl = require('../controllers/muscles')
 
 router.get('/', MuscleGroupCtrl.getMuscleGroups)
 
-//route not needed- only for testing in DB
-//router.post('/', MuscleGroupCtrl.createMuscleGroup)
+
 
 module.exports = router
